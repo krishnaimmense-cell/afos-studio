@@ -3,116 +3,17 @@
 <head>
   <title>AFOS Studio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <style>
-    *{box-sizing:border-box} body{margin:0;font-family:Arial,sans-serif;background:#05060a;color:white}
-    .app{min-height:100vh;display:flex}.sidebar{width:260px;background:#0e1018;border-right:1px solid #252a35;padding:24px}
-    .logo{font-size:26px;font-weight:bold}.tag{color:#ff9f43;font-size:12px;letter-spacing:3px;font-weight:bold}
-    .nav{margin-top:32px}.nav div{padding:13px 12px;border-radius:10px;color:#b9beca;margin-bottom:6px}.active{background:#181b28!important;color:white!important}
-    .main{flex:1} header{padding:32px;background:linear-gradient(135deg,#11131a,#181b28);border-bottom:1px solid #252a35}
-    h1{margin:0;font-size:42px}.sub{color:#b9beca;margin-top:8px;font-size:18px}
-    .btn{background:linear-gradient(135deg,#ff9f43,#ff6bcb);color:#000;padding:15px 22px;border-radius:14px;display:inline-block;margin-top:24px;font-weight:bold;cursor:pointer;border:0}
-    .content{padding:30px}.card{background:#12151f;border:1px solid #252a35;border-radius:18px;padding:22px;margin-bottom:16px}
-    .progress{height:10px;background:#252a35;border-radius:10px;overflow:hidden;margin-top:16px}.progress-inner{width:12%;height:100%;background:linear-gradient(90deg,#55efc4,#74b9ff)}
-    .stage{display:flex;justify-content:space-between;align-items:center}.ready{color:#55efc4;font-weight:bold}.pending{color:#888}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.small{color:#999}
-    .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;padding:20px}
-    .modal{background:#12151f;border:1px solid #252a35;border-radius:20px;padding:24px;width:100%;max-width:520px}
-    input,textarea,select{width:100%;padding:14px;margin:8px 0 16px;background:#090b10;border:1px solid #2b3140;border-radius:12px;color:white}
-    .row{display:flex;gap:12px}.ghost{background:#252a35;color:white}
-    @media(max-width:800px){.app{display:block}.sidebar{width:100%;border-right:none;border-bottom:1px solid #252a35}.grid{grid-template-columns:1fr}h1{font-size:34px}.row{display:block}}
-  </style>
+
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<div id="root"></div>
+  <div id="root"></div>
 
-<script type="text/babel">
-function App(){
-  const [modal,setModal]=React.useState(false);
-  const [project,setProject]=React.useState("Untitled Film Project");
-
-  const stages=[
-    ["01. Story Analysis","Ready"],["02. Director Vision","Not Started"],["03. Characters","Not Started"],
-    ["04. Environments","Not Started"],["05. Camera Journey","Not Started"],["06. Scene Breakdown","Not Started"],
-    ["07. Shot List","Not Started"],["08. Storyboard","Not Started"],["09. Image Generation","Not Started"],
-    ["10. Animation","Not Started"],["11. Editing","Not Started"],["12. Sound Design","Not Started"],
-    ["13. Quality Review","Not Started"],["14. Export","Not Started"]
-  ];
-
-  function createProject(e){
-    e.preventDefault();
-    const name=e.target.project.value || "Untitled Film Project";
-    setProject(name);
-    setModal(false);
-  }
-
-  return(
-    <div className="app">
-      <aside className="sidebar">
-        <div className="logo">AFOS Studio</div>
-        <div className="tag">FILM OS</div>
-        <div className="nav">
-          <div className="active">Dashboard</div><div>Projects</div><div>Story</div><div>Characters</div>
-          <div>Environments</div><div>Camera Journey</div><div>Storyboard</div><div>Animation</div><div>Export</div>
-        </div>
-      </aside>
-
-      <main className="main">
-        <header>
-          <div className="tag">AUTONOMOUS FILMMAKING OPERATING SYSTEM</div>
-          <h1>Welcome back, director.</h1>
-          <div className="sub">Build complete production-ready films from a single story.</div>
-          <button className="btn" onClick={()=>setModal(true)}>+ New Film Project</button>
-        </header>
-
-        <div className="content">
-          <div className="card">
-            <div className="tag">CURRENT PRODUCTION</div>
-            <h2>{project}</h2>
-            <p className="small">Production foundation ready. Begin by uploading a story or screenplay.</p>
-            <div className="progress"><div className="progress-inner"></div></div>
-            <p className="small">Progress: 12%</p>
-          </div>
-
-          <h2>Production Pipeline</h2>
-          <div className="grid">
-            {stages.map((s,i)=>(
-              <div className="card stage" key={i}>
-                <span>{s[0]}</span>
-                <span className={s[1]==="Ready"?"ready":"pending"}>{s[1]}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </main>
-
-      {modal && (
-        <div className="modal-bg">
-          <form className="modal" onSubmit={createProject}>
-            <h2>Create New Film Project</h2>
-            <label>Project Name</label>
-            <input name="project" placeholder="Example: Hanuman - The Name of Ram" />
-            <label>Genre</label>
-            <select><option>Mythological</option><option>Action</option><option>Drama</option><option>Fantasy</option></select>
-            <label>Target Runtime</label>
-            <input placeholder="Example: 3 minutes" />
-            <label>Visual Style</label>
-            <input placeholder="Example: IMAX cinematic, photorealistic" />
-            <label>Story / Notes</label>
-            <textarea rows="4" placeholder="Paste your story idea here..."></textarea>
-            <div className="row">
-              <button className="btn" type="submit">Create Project</button>
-              <button className="btn ghost" type="button" onClick={()=>setModal(false)}>Cancel</button>
-            </div>
-          </form>
-        </div>
-      )}
-    </div>
-  )
-}
-
-ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
-</script>
+  <script type="text/babel" src="app.js"></script>
 </body>
 </html>
