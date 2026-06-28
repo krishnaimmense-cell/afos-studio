@@ -3,137 +3,116 @@
 <head>
   <title>AFOS Studio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <style>
     * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #05060a;
-      color: white;
-    }
-    header {
-      padding: 32px 24px;
-      background: linear-gradient(135deg, #11131a, #181b28);
-      border-bottom: 1px solid #252a35;
-    }
-    h1 {
-      margin: 0;
-      font-size: 40px;
-      letter-spacing: -1px;
-    }
-    .sub {
-      color: #b9beca;
-      margin-top: 8px;
-      font-size: 18px;
-    }
-    .btn {
-      background: linear-gradient(135deg, #ff9f43, #ff6bcb);
-      color: #000;
-      padding: 16px 22px;
-      border-radius: 14px;
-      display: inline-block;
-      margin-top: 24px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .section { padding: 28px 24px; }
-    .hero-card {
-      background: #11131a;
-      border: 1px solid #252a35;
-      border-radius: 20px;
-      padding: 22px;
-      margin-bottom: 24px;
-    }
-    .progress {
-      height: 10px;
-      background: #252a35;
-      border-radius: 10px;
-      overflow: hidden;
-      margin-top: 14px;
-    }
-    .progress-inner {
-      width: 12%;
-      height: 100%;
-      background: linear-gradient(90deg, #55efc4, #74b9ff);
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-    }
-    .card {
-      background: #12151f;
-      padding: 18px;
-      border-radius: 16px;
-      border: 1px solid #252a35;
-    }
-    .stage {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .ready { color: #55efc4; font-weight: bold; }
-    .progressing { color: #74b9ff; font-weight: bold; }
-    .pending { color: #888; }
-    .locked { color: #ff9f43; font-weight: bold; }
-    .label {
-      font-size: 12px;
-      color: #ff9f43;
-      letter-spacing: 3px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-    footer {
-      padding: 24px;
-      color: #777;
-      border-top: 1px solid #252a35;
-      margin-top: 30px;
+    body { margin:0; font-family:Arial, sans-serif; background:#05060a; color:white; }
+    .app { min-height:100vh; display:flex; }
+    .sidebar { width:260px; background:#0e1018; border-right:1px solid #252a35; padding:24px; }
+    .logo { font-size:26px; font-weight:bold; margin-bottom:6px; }
+    .tag { color:#ff9f43; font-size:12px; letter-spacing:3px; font-weight:bold; }
+    .nav { margin-top:32px; }
+    .nav div { padding:13px 12px; border-radius:10px; color:#b9beca; margin-bottom:6px; }
+    .nav .active { background:#181b28; color:white; }
+    .main { flex:1; }
+    header { padding:32px; background:linear-gradient(135deg,#11131a,#181b28); border-bottom:1px solid #252a35; }
+    h1 { margin:0; font-size:42px; }
+    .sub { color:#b9beca; margin-top:8px; font-size:18px; }
+    .btn { background:linear-gradient(135deg,#ff9f43,#ff6bcb); color:#000; padding:15px 22px; border-radius:14px; display:inline-block; margin-top:24px; font-weight:bold; cursor:pointer; }
+    .content { padding:30px; }
+    .card { background:#12151f; border:1px solid #252a35; border-radius:18px; padding:22px; margin-bottom:16px; }
+    .progress { height:10px; background:#252a35; border-radius:10px; overflow:hidden; margin-top:16px; }
+    .progress-inner { width:12%; height:100%; background:linear-gradient(90deg,#55efc4,#74b9ff); }
+    .stage { display:flex; justify-content:space-between; align-items:center; }
+    .ready { color:#55efc4; font-weight:bold; }
+    .pending { color:#888; }
+    .grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .small { color:#999; }
+    @media(max-width:800px){
+      .app { display:block; }
+      .sidebar { width:100%; border-right:none; border-bottom:1px solid #252a35; }
+      .grid { grid-template-columns:1fr; }
+      h1 { font-size:34px; }
     }
   </style>
 </head>
 <body>
+  <div id="root"></div>
 
-  <header>
-    <div class="label">AUTONOMOUS FILMMAKING OPERATING SYSTEM</div>
-    <h1>AFOS Studio</h1>
-    <div class="sub">Turn stories into complete production-ready films.</div>
-    <div class="btn">+ New Film Project</div>
-  </header>
+  <script type="text/babel">
+    function App() {
+      const stages = [
+        ["01. Story Analysis", "Ready"],
+        ["02. Director Vision", "Not Started"],
+        ["03. Characters", "Not Started"],
+        ["04. Environments", "Not Started"],
+        ["05. Camera Journey", "Not Started"],
+        ["06. Scene Breakdown", "Not Started"],
+        ["07. Shot List", "Not Started"],
+        ["08. Storyboard", "Not Started"],
+        ["09. Image Generation", "Not Started"],
+        ["10. Animation", "Not Started"],
+        ["11. Editing", "Not Started"],
+        ["12. Sound Design", "Not Started"],
+        ["13. Quality Review", "Not Started"],
+        ["14. Export", "Not Started"]
+      ];
 
-  <div class="section">
-    <div class="hero-card">
-      <div class="label">CURRENT PRODUCTION</div>
-      <h2>Untitled Film Project</h2>
-      <p style="color:#b9beca;">Production foundation ready. Begin by uploading a story or screenplay.</p>
-      <div class="progress">
-        <div class="progress-inner"></div>
-      </div>
-      <p style="color:#777;">Progress: 12%</p>
-    </div>
+      return (
+        <div className="app">
+          <aside className="sidebar">
+            <div className="logo">AFOS Studio</div>
+            <div className="tag">FILM OS</div>
 
-    <h2>Production Pipeline</h2>
+            <div className="nav">
+              <div className="active">Dashboard</div>
+              <div>Projects</div>
+              <div>Story</div>
+              <div>Characters</div>
+              <div>Environments</div>
+              <div>Camera Journey</div>
+              <div>Storyboard</div>
+              <div>Animation</div>
+              <div>Export</div>
+            </div>
+          </aside>
 
-    <div class="grid">
-      <div class="card stage"><span>01. Story Analysis</span><span class="ready">Ready</span></div>
-      <div class="card stage"><span>02. Director Vision</span><span class="pending">Not Started</span></div>
-      <div class="card stage"><span>03. Characters</span><span class="pending">Not Started</span></div>
-      <div class="card stage"><span>04. Environments</span><span class="pending">Not Started</span></div>
-      <div class="card stage"><span>05. Camera Journey</span><span class="pending">Not Started</span></div>
-      <div class="card stage"><span>06. Scene Breakdown</span><span class="pending">Not Started</span></div>
-      <div class="card stage"><span>07. Shot List</span><span class="pending">Not Started</span></div>
-      <div class="card stage"><span>08. Storyboard</span><span class="pending">Not Started</span></div>
-      <div class="card stage"><span>09. Image Generation</span><span class="pending">Not Started</span></div>
-      <div class="card stage"><span>10. Animation</span><span class="pending">Not Started</span></div>
-      <div class="card stage"><span>11. Editing</span><span class="pending">Not Started</span></div>
-      <div class="card stage"><span>12. Sound Design</span><span class="pending">Not Started</span></div>
-      <div class="card stage"><span>13. Quality Review</span><span class="pending">Not Started</span></div>
-      <div class="card stage"><span>14. Export</span><span class="pending">Not Started</span></div>
-    </div>
-  </div>
+          <main className="main">
+            <header>
+              <div className="tag">AUTONOMOUS FILMMAKING OPERATING SYSTEM</div>
+              <h1>Welcome back, director.</h1>
+              <div className="sub">Build complete production-ready films from a single story.</div>
+              <div className="btn">+ New Film Project</div>
+            </header>
 
-  <footer>
-    AFOS Studio v0.1 Prototype
-  </footer>
+            <div className="content">
+              <div className="card">
+                <div className="tag">CURRENT PRODUCTION</div>
+                <h2>Untitled Film Project</h2>
+                <p className="small">Production foundation ready. Begin by uploading a story or screenplay.</p>
+                <div className="progress"><div className="progress-inner"></div></div>
+                <p className="small">Progress: 12%</p>
+              </div>
 
+              <h2>Production Pipeline</h2>
+
+              <div className="grid">
+                {stages.map((stage, index) => (
+                  <div className="card stage" key={index}>
+                    <span>{stage[0]}</span>
+                    <span className={stage[1] === "Ready" ? "ready" : "pending"}>{stage[1]}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </main>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
 </body>
 </html>
