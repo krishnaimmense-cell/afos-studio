@@ -4,36 +4,136 @@
   <title>AFOS Studio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    body { margin:0; font-family:Arial; background:#08090d; color:white; }
-    header { padding:24px; background:#11131a; }
-    h1 { margin:0; font-size:32px; }
-    .sub { color:#aaa; margin-top:8px; }
-    .btn { background:#ff9f43; color:#000; padding:14px 20px; border-radius:12px; display:inline-block; margin-top:20px; font-weight:bold; }
-    .section { padding:24px; }
-    .card { background:#151822; padding:18px; border-radius:16px; margin-bottom:14px; border:1px solid #252a35; }
-    .stage { display:flex; justify-content:space-between; }
-    .done { color:#55efc4; }
-    .pending { color:#888; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #05060a;
+      color: white;
+    }
+    header {
+      padding: 32px 24px;
+      background: linear-gradient(135deg, #11131a, #181b28);
+      border-bottom: 1px solid #252a35;
+    }
+    h1 {
+      margin: 0;
+      font-size: 40px;
+      letter-spacing: -1px;
+    }
+    .sub {
+      color: #b9beca;
+      margin-top: 8px;
+      font-size: 18px;
+    }
+    .btn {
+      background: linear-gradient(135deg, #ff9f43, #ff6bcb);
+      color: #000;
+      padding: 16px 22px;
+      border-radius: 14px;
+      display: inline-block;
+      margin-top: 24px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .section { padding: 28px 24px; }
+    .hero-card {
+      background: #11131a;
+      border: 1px solid #252a35;
+      border-radius: 20px;
+      padding: 22px;
+      margin-bottom: 24px;
+    }
+    .progress {
+      height: 10px;
+      background: #252a35;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 14px;
+    }
+    .progress-inner {
+      width: 12%;
+      height: 100%;
+      background: linear-gradient(90deg, #55efc4, #74b9ff);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .card {
+      background: #12151f;
+      padding: 18px;
+      border-radius: 16px;
+      border: 1px solid #252a35;
+    }
+    .stage {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .ready { color: #55efc4; font-weight: bold; }
+    .progressing { color: #74b9ff; font-weight: bold; }
+    .pending { color: #888; }
+    .locked { color: #ff9f43; font-weight: bold; }
+    .label {
+      font-size: 12px;
+      color: #ff9f43;
+      letter-spacing: 3px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    footer {
+      padding: 24px;
+      color: #777;
+      border-top: 1px solid #252a35;
+      margin-top: 30px;
+    }
   </style>
 </head>
 <body>
+
   <header>
+    <div class="label">AUTONOMOUS FILMMAKING OPERATING SYSTEM</div>
     <h1>AFOS Studio</h1>
-    <div class="sub">Autonomous Filmmaking Operating System</div>
+    <div class="sub">Turn stories into complete production-ready films.</div>
     <div class="btn">+ New Film Project</div>
   </header>
 
   <div class="section">
+    <div class="hero-card">
+      <div class="label">CURRENT PRODUCTION</div>
+      <h2>Untitled Film Project</h2>
+      <p style="color:#b9beca;">Production foundation ready. Begin by uploading a story or screenplay.</p>
+      <div class="progress">
+        <div class="progress-inner"></div>
+      </div>
+      <p style="color:#777;">Progress: 12%</p>
+    </div>
+
     <h2>Production Pipeline</h2>
 
-    <div class="card stage"><span>Story Analysis</span><span class="done">Ready</span></div>
-    <div class="card stage"><span>Director Vision</span><span class="pending">Not Started</span></div>
-    <div class="card stage"><span>Characters</span><span class="pending">Not Started</span></div>
-    <div class="card stage"><span>Environments</span><span class="pending">Not Started</span></div>
-    <div class="card stage"><span>Camera Journey</span><span class="pending">Not Started</span></div>
-    <div class="card stage"><span>Storyboard</span><span class="pending">Not Started</span></div>
-    <div class="card stage"><span>Animation</span><span class="pending">Not Started</span></div>
-    <div class="card stage"><span>Export</span><span class="pending">Not Started</span></div>
+    <div class="grid">
+      <div class="card stage"><span>01. Story Analysis</span><span class="ready">Ready</span></div>
+      <div class="card stage"><span>02. Director Vision</span><span class="pending">Not Started</span></div>
+      <div class="card stage"><span>03. Characters</span><span class="pending">Not Started</span></div>
+      <div class="card stage"><span>04. Environments</span><span class="pending">Not Started</span></div>
+      <div class="card stage"><span>05. Camera Journey</span><span class="pending">Not Started</span></div>
+      <div class="card stage"><span>06. Scene Breakdown</span><span class="pending">Not Started</span></div>
+      <div class="card stage"><span>07. Shot List</span><span class="pending">Not Started</span></div>
+      <div class="card stage"><span>08. Storyboard</span><span class="pending">Not Started</span></div>
+      <div class="card stage"><span>09. Image Generation</span><span class="pending">Not Started</span></div>
+      <div class="card stage"><span>10. Animation</span><span class="pending">Not Started</span></div>
+      <div class="card stage"><span>11. Editing</span><span class="pending">Not Started</span></div>
+      <div class="card stage"><span>12. Sound Design</span><span class="pending">Not Started</span></div>
+      <div class="card stage"><span>13. Quality Review</span><span class="pending">Not Started</span></div>
+      <div class="card stage"><span>14. Export</span><span class="pending">Not Started</span></div>
+    </div>
   </div>
+
+  <footer>
+    AFOS Studio v0.1 Prototype
+  </footer>
+
 </body>
 </html>
